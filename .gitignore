@@ -1,2 +1,3 @@
 *.fasta
 *.fasta.gz
+.DS_Store
