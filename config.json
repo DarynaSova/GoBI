@@ -1,0 +1,10 @@
+{
+  "famsa": {
+    "exe": "D:/Uni/TUM/GOBI_APPs/famsa.exe",
+    "input_fasta": "data/input.fasta",
+    "output_fasta": "data/alignment.fasta"
+  },
+  "iqtree": {
+    "exe": "D:/Uni/TUM/GOBI_APPs/iqtree-3.0.1-Windows/bin/iqtree3.exe"
+  }
+}

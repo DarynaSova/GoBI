@@ -5,7 +5,7 @@ import shutil
 
 # FAMSA2 MSA
 
-def main():
+def famsa():
     # Check arguments
     if len(sys.argv) != 3:
         print(f"Usage: python {sys.argv[0]} <input.fasta> <output.fasta>")
@@ -30,4 +30,4 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    main()
+    famsa()
