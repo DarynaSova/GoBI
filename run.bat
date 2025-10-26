@@ -1,2 +1,3 @@
 @echo off
-py "D:\Uni\TUM\GOBI\pipelineTreePart.py"
+: add famsa part
+py ".\pipelineTreePart.py"
