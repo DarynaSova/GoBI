@@ -1,3 +1,3 @@
 @echo off
-: add famsa part
+py ".\pipelineFAMSA.py"
 py ".\pipelineTreePart.py"

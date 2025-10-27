@@ -1,6 +1,6 @@
 {
   "famsa": {
-    "exe": "D:/Uni/TUM/GOBI_APPs/famsa.exe",
+    "exe": "/opt/anaconda3/envs/bioinfo/bin/famsa",
     "input_fasta": "data/input.fasta",
     "output_fasta": "data/alignment.fasta"
   },
