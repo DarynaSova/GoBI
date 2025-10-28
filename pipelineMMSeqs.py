@@ -50,7 +50,7 @@ def mmseqs_easy_search(config_path="config.json"):
     tmp = windows_to_wsl(tmp_dir)
     cmd = ["wsl", exe_cmd, "easy-search", q, t, r, tmp, "--format-output", fmt]
     
-
+    
     try:
         print("Running MMseqs2 easy-search...")
         subprocess.run(cmd, check=True)
