@@ -1,10 +1,18 @@
 {
-  "famsa": {
+    "famsa": {
     "exe": "/opt/anaconda3/envs/bioinfo/bin/famsa",
     "input_fasta": "data/input.fasta",
     "output_fasta": "data/alignment.fasta"
   },
   "iqtree": {
     "exe": "D:/Uni/TUM/GOBI_APPs/iqtree-3.0.1-Windows/bin/iqtree3.exe"
+  },
+  "mmseqs": {
+  "exe": "mmseqs",               
+  "query": "data/RAS_family.fasta",
+  "target": "data/tongue_sole_proteome.fasta",
+  "result": "data/mmseqs_results.tsv",
+  "format": "query,target,evalue,pident,alnlen,qcov,tcov",
+  "tmp_dir": "tmp"
   }
 }
