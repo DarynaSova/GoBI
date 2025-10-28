@@ -8,6 +8,7 @@ from pathlib import Path
 #It catches missing wsl installation and missing input files. 
 # As of now it does not check for mmseqs2 installation inside WSL.
 #The input and output paths are defined in the config.json file. So is the format of the output tsv file.
+#sudo apt install mmseqs2 inside WSL to install mmseqs2 if not already installed.
 
 # Converting a windows path to WSL path 
 def windows_to_wsl(path: Path) -> str:
@@ -50,7 +51,7 @@ def mmseqs_easy_search(config_path="config.json"):
     tmp = windows_to_wsl(tmp_dir)
     cmd = ["wsl", exe_cmd, "easy-search", q, t, r, tmp, "--format-output", fmt]
     
-    
+
     try:
         print("Running MMseqs2 easy-search...")
         subprocess.run(cmd, check=True)
