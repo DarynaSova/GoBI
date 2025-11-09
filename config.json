@@ -14,5 +14,17 @@
   "result": "data/mmseqs_results.tsv",
   "format": "query,target,evalue,pident,alnlen,qcov,tcov",
   "tmp_dir": "tmp"
+  },
+  "embedding": {
+    "workflow_file_location": "/home/demir/GoBi/outputs/",
+    "workflow_file_name": "pogona_vitticeps_try_1",
+    "base_dataset_file": "/home/demir/GoBi/data/pogona_vitticeps/uniprotkb_family_small_GTPase_superfami_2025_11_02.fasta",
+    "hit_ids": "/home/demir/GoBi/data/pogona_vitticeps/mmseq_pogona_hits.txt",
+    "hit_organism_proteome": "/home/demir/GoBi/data/pogona_vitticeps/pogona_uniprot_proteome.norm[1].faa",
+    "env_bio_embedding": "/home/demir/bioembed-env",
+    "env_protspace": "/home/demir/protspace-env",
+    "protspace_methods": "umap3,tsne2,pca2",
+    "protspace_features": "species,class,cc_subcellular_location,length_fixed,fragment"
   }
+
 }
