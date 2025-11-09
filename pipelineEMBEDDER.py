@@ -7,11 +7,15 @@ import json
 import yaml
 import re
 
-
-
+# ------------------------------------------------------------------------------------------
+# This pipeline implementation is responsible for three actions (where each action is done continuously):
+# 1 preprocessing the input files (specified in config.json) and preparing a embedding-ready-dataset which includes a merged dataset (base dataset + hits from target organism)
+# does the embedding itself using the embedding model prott5_xl_u50 via bio_embeddings (the same tool which was used by UniProt to produce their embeddings)
+# invokes protspace-local to conduct dimensionality reduction using the methods passed in the protspace_methods key in the config file
+# -------------------------------------SCRIPT ARGUMENTS-------------------------------------
+# -c / --config <config.json>: path to the .json file with an "embedding" section which holds keys that are crucial for the setup of the pipeline
+# -o / --organism <organism_name>: Name of the target organism(case sensitive), given in double quotes, which be marked distinctively in the protspace output
 #-------------------------------------- HELPER METHODS -------------------------------------
-
-
 def exit_with_error(message: str):
     embed_print(f"(ERROR) {message}")
     sys.exit(1)
