@@ -3,6 +3,7 @@ import sys
 import shutil
 import json
 from pathlib import Path
+import os
 
 #This pipeline implementation calls mmseqs2 easy-search via WSL on Windows. It uses the default parameters
 #It catches missing wsl installation and missing input files. 
@@ -16,7 +17,7 @@ def windows_to_wsl(path: Path) -> str:
     wsl_path = f"/mnt/{drive}/{tail}"
     return wsl_path
 
-def mmseqs_easy_search(config_path="config.json"):
+def mmseqs_search(config_path="config.json"):
     #Reading json config
     with open(config_path, "r") as f:
         cfg = json.load(f)
@@ -49,16 +50,34 @@ def mmseqs_easy_search(config_path="config.json"):
     t = windows_to_wsl(target)
     r = windows_to_wsl(result); 
     tmp = windows_to_wsl(tmp_dir)
-    cmd = ["wsl", exe_cmd, "easy-search", q, t, r, tmp, "--format-output", fmt]
+
+    q_db = os.path.join(tmp, "queryDB")
+    t_db = os.path.join(tmp, "targetDB")
+    res_db = os.path.join(tmp, "searchRes")
+
+    cmds = [
+    ["wsl", exe_cmd, "createdb", q, q_db],                    # amino acids (proteins)
+    ["wsl", exe_cmd, "createdb", t, t_db],                    # nucleotides (genome)
+    # optional but speeds up repeated runs:
+    ["wsl", exe_cmd, "createindex", t_db, tmp],               # index target genome
+    # 2) Search: protein (query) vs nucleotide (target)  == TBLASTN
+    ["wsl", exe_cmd, "search", q_db, t_db, res_db, tmp,
+     "--search-type", "3",    # force protein->nucleotide (TBLASTN mode)
+     "-a"],                   # keep alignment info for convertalis/custom fields
+    # 3) Convert to TSV with your chosen columns
+    ["wsl", exe_cmd, "convertalis", q_db, t_db, res_db, r,
+     "--format-output", fmt,
+     "--format-mode", "4"]    # add header row (nice for downstream parsing)
+]
     
 
     try:
-        print("Running MMseqs2 easy-search...")
-        subprocess.run(cmd, check=True)
-        print(f"Done. Results: {result}")
+        for c in cmds:
+            print("Running:", " ".join(c))
+            subprocess.run(c, check=True)
     except subprocess.CalledProcessError:
         print("MMseqs2 easy-search failed.")
         sys.exit(1)
 
 if __name__ == "__main__":
-    mmseqs_easy_search()
+    mmseqs_search()
