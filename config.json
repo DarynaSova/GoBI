@@ -2,7 +2,7 @@
     "famsa": {
     "exe": "/opt/anaconda3/envs/bioinfo/bin/famsa",
     "input_fasta": "data/input.fasta",
-    "output_fasta": "data/alignment.fasta"
+    "output_fasta": "data/alignmenthuman.fasta"
   },
   "iqtree": {
     "exe": "D:/Uni/TUM/GOBI_APPs/iqtree-3.0.1-Windows/bin/iqtree3.exe"
